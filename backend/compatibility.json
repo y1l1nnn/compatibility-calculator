@@ -1,0 +1,12 @@
+{
+  "mbti": {
+    "INFP": { "ENFJ": 90, "ISTJ": 50, "INFP": 70 },
+    "ENFJ": { "INFP": 90, "ENTP": 60 },
+    "ISTJ": { "INFP": 50, "ESFP": 65 }
+  },
+  "zodiac": {
+    "Aries": { "Leo": 85, "Cancer": 40, "Aries": 75 },
+    "Leo": { "Aries": 85, "Virgo": 45 },
+    "Cancer": { "Aries": 40, "Pisces": 80 }
+  }
+}
