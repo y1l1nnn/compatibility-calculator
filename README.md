@@ -1,5 +1,5 @@
 ## ･ﾟ･✧ ♡ Compatibility Calculator ♡ ✧･ﾟ･
-Calculates the compatibility % between two individuals based on attributes such as 
+Calculates the compatibility % between two individuals based on a combination of attributes such as 
 * initials
 * star signs
 * blood types
