@@ -3,7 +3,7 @@ import { Person, CompatibilityResult } from '../../backend/src/types';
 import { calculateCompatibility } from './api';
 
 // collects user input and calls api 
-export default function app() {
+export default function App() {
 	const [personA, setPersonA] = useState<Person>({
 		initials: '',
 		starSign: '',
@@ -20,10 +20,10 @@ export default function app() {
   	});
   	// holds compatibility calculation response
 	const [result, setResult] = useState<CompatibilityResult | null>(null); 
-	// track waiting for API response
-	const [loading, setLoading] = useState(false); 
 
 	const handleSubmit = async() => {
-
-	}
+		const result = await calculateCompatibility(personA, personB);
+		setResult(result)
+	};
+	return (<h1>Compatibility Calculator</h1>);
 }
