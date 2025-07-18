@@ -11,14 +11,15 @@ export type StarSign =
     "Virgo" | "Libra" | "Scorpio" | "Saggitarius" | 
     "Capricorn" | "Aquarius" | "Pisces";   
 
-export type MBTI = `${'E'|'I'}${'S'|'N'}${'T'|'F'}${'J'|'P'}`;
-
+  
 export type ZodiacAnimal = 
-    "Rat" | "Ox" | "Tiger" | "Rabbit" | 
-    "Dragon" | "Snake" | "Horse" | "Goat" |
-    "Monkey" | "Rooster" | "Dog" | "Pig";
+"Rat" | "Ox" | "Tiger" | "Rabbit" | 
+"Dragon" | "Snake" | "Horse" | "Goat" |
+"Monkey" | "Rooster" | "Dog" | "Pig";
 
 export type BloodType = "A" | "B" | "O" | "AB";
+
+export type MBTI = `${'E'|'I'}${'S'|'N'}${'T'|'F'}${'J'|'P'}`;
 
 export interface CompatibilityResult {
   score: number;
