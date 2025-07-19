@@ -3,7 +3,7 @@ import { Person, CompatibilityResult } from '../../backend/src/types';
 import { calculateCompatibility } from './api';
 
 // collects user input and calls api 
-export default function App() {
+function App() {
 	const [personA, setPersonA] = useState<Person>({
 		initials: '',
 		starSign: 'Aries', // random default values 
@@ -27,3 +27,5 @@ export default function App() {
 	};
 	return (<h1>Compatibility Calculator</h1>);
 }
+
+export default App 
