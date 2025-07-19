@@ -1,21 +1,21 @@
 export interface Person {
-    initials: string;
-    starSign: StarSign;
-    mbti: MBTI;
-    zodiac: ZodiacAnimal;
-    blood: BloodType;
+  initials: string;
+  starSign: StarSign;
+  mbti: MBTI;
+  zodiac: ZodiacAnimal;
+  blood: BloodType;
 }
 
 export type StarSign = 
-    "Aries" | "Taurus" | "Gemini" | "Cancer" | "Leo" | 
-    "Virgo" | "Libra" | "Scorpio" | "Saggitarius" | 
-    "Capricorn" | "Aquarius" | "Pisces";   
+  | "Aries" | "Taurus" | "Gemini" | "Cancer" | "Leo" | 
+  "Virgo" | "Libra" | "Scorpio" | "Saggitarius" | 
+  "Capricorn" | "Aquarius" | "Pisces";   
 
   
 export type ZodiacAnimal = 
-"Rat" | "Ox" | "Tiger" | "Rabbit" | 
-"Dragon" | "Snake" | "Horse" | "Goat" |
-"Monkey" | "Rooster" | "Dog" | "Pig";
+  | "Rat" | "Ox" | "Tiger" | "Rabbit" | 
+  "Dragon" | "Snake" | "Horse" | "Goat" |
+  "Monkey" | "Rooster" | "Dog" | "Pig";
 
 export type BloodType = "A" | "B" | "O" | "AB";
 
