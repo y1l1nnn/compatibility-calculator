@@ -6,17 +6,17 @@ import { calculateCompatibility } from './api';
 export default function App() {
 	const [personA, setPersonA] = useState<Person>({
 		initials: '',
-		starSign: '',
-		mbti: '',
-		zodiac: '',
-		blood: ''
+		starSign: 'Aries', // random default values 
+		mbti: 'ENTP',
+		zodiac: 'Rat',
+		blood: 'A'
   	});
   	const [personB, setPersonB] = useState<Person>({
 		initials: '',
-		starSign: '',
-		mbti: '',
-		zodiac: '',
-		blood: ''
+		starSign: 'Aries',
+		mbti: 'ENTP',
+		zodiac: 'Rat',
+		blood: 'A'
   	});
   	// holds compatibility calculation response
 	const [result, setResult] = useState<CompatibilityResult | null>(null); 

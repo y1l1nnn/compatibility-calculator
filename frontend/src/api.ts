@@ -4,7 +4,7 @@ import {Person, CompatibilityResult} from '../../backend/src/types';
 // handles communication with backend 
 export async function calculateCompatibility(personA: Person, personB: Person): Promise<CompatibilityResult> {
     const response = await axios.post<CompatibilityResult>(
-        "http://localhost:5000/api/calculate", 
+        "http://localhost:6000/api/calculate", 
         { personA, personB }
     );
     return response.data;

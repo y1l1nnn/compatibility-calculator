@@ -5,13 +5,13 @@ import path from 'path';
 import {Person} from './types'
 
 const app = express();
-const port = 5000; 
+const port = 6000; 
 
 app.use(cors());
 app.use(express.json());
 
 // read attr_compatibility.json 
-const pathname = path.join(__dirname, 'compatibility.json');
+const pathname = path.join(__dirname, 'attr_compatibility.json');
 const data = fs.readFileSync(pathname, 'utf-8');
 const compatibilityData = JSON.parse(data);
 

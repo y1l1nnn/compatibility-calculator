@@ -2,10 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "nodemon",
-    "start": "ts-node src/index.ts",
+    "dev": "nodemon src/server.ts",
+    "start": "ts-node src/server.ts",
     "build": "tsc"
   },
   "dependencies": {
