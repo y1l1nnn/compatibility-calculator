@@ -17,31 +17,39 @@ const compatibilityData = JSON.parse(data);
 
 // get score of given attribute 
 function getScore(attr: keyof Person, a: string, b: string): number {
-    const score = compatibilityData[attr][a][b];
-    return score;
+	const score = compatibilityData[attr][a][b];
+	return score;
+}
+
+// calculate score for name 
+function getNameScore(a: string, b: string): number {
+	if (!a || !b) {
+		throw new Error("Please enter a name");
+	}
+	return 0;
 }
 
 // endpoint to calculate results 
 app.post('/api/calculate', (req, res) => {
-    const {personA, personB} = req.body 
-    const initialsScore = 0;
-    const starScore = getScore("starSign", personA.starSign, personB.starSign);
-    const mbtiScore = getScore("mbti", personA.mbti, personB.mbti);
-    const zodiacScore = getScore("zodiac", personA.zodiac, personB.zodiac); 
-    const bloodScore = getScore("blood", personA.blood, personB.blood);  
-    const finalScore = Math.round(initialsScore * 0.1 + starScore * 0.3 + mbtiScore * 0.4 + zodiacScore * 0.1 + bloodScore * 0.1);
-    res.json({ 
-        score: finalScore,
-        breakdown: {
-            initials: initialsScore,
-            starSign: starScore,
-            mbti: mbtiScore,
-            zodiac: zodiacScore, 
-            blood: bloodScore
-        }
-    });
+	const {personA, personB} = req.body 
+	const nameScore = getNameScore(personA.name, personB.name);
+	const starScore = getScore("starSign", personA.starSign, personB.starSign);
+	const mbtiScore = getScore("mbti", personA.mbti, personB.mbti);
+	const zodiacScore = getScore("zodiac", personA.zodiac, personB.zodiac); 
+	const bloodScore = getScore("blood", personA.blood, personB.blood);  
+	const finalScore = Math.round(nameScore * 0.1 + starScore * 0.3 + mbtiScore * 0.4 + zodiacScore * 0.1 + bloodScore * 0.1);
+	res.json({ 
+		score: finalScore,
+		breakdown: {
+			initials: nameScore,
+			starSign: starScore,
+			mbti: mbtiScore,
+			zodiac: zodiacScore, 
+			blood: bloodScore
+		}
+	});
 });
 
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`)
+	console.log(`Server running on port ${port}`)
 });

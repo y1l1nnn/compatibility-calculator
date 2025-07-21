@@ -13,14 +13,14 @@ import {
 // collects user input 
 function App() {
 	const [personA, setPersonA] = useState<Person>({
-		initials: '',
+		name: '',
 		starSign: 'Aries', // random default values 
 		mbti: 'ENTP',
 		zodiac: 'Rat',
 		blood: 'A'
 	});
 	const [personB, setPersonB] = useState<Person>({
-		initials: '',
+		name: '',
 		starSign: 'Aries',
 		mbti: 'ENTP',
 		zodiac: 'Rat',
@@ -41,7 +41,6 @@ function App() {
 				{ personA, personB }
 			);
 			setResult(response.data);
-			console.log("Response:", response.data);
 		} catch (error) {
 			console.error('Error calculating compatibility:', error);
 		} 
@@ -55,12 +54,12 @@ function App() {
 				<h2 className="person">PERSON A</h2>
 				<div className="fields">
 					<label>
-						<span>Name Initials:</span>
+						<span>First Name:</span>
 						<input 
 							type="text"
-							placeholder="Enter initials"
-							value={personA.initials}
-							onChange={(e) => setPersonA({ ...personA, initials: e.target.value })}
+							placeholder="Enter name"
+							value={personA.name}
+							onChange={(e) => setPersonA({ ...personA, name: e.target.value })}
 							/>
 					</label>
 					<label>
@@ -134,12 +133,12 @@ function App() {
 				<h2 className="person">PERSON B</h2>
 				<div className="fields">
 					<label>
-						<span>Name Initials:</span>
+						<span>First Name:</span>
 						<input 
 							type="text"
-							placeholder="Enter initials"
-							value={personB.initials}
-							onChange={(e) => setPersonB({ ...personB, initials: e.target.value })}
+							placeholder="Enter name"
+							value={personB.name}
+							onChange={(e) => setPersonB({ ...personB, name: e.target.value })}
 							/>
 					</label>
 					<label>

@@ -1,5 +1,5 @@
 export interface Person {
-  initials: string;
+  name: string;
   starSign: StarSign;
   mbti: MBTI;
   zodiac: ZodiacAnimal;
@@ -24,7 +24,7 @@ export type MBTI = `${'E'|'I'}${'S'|'N'}${'T'|'F'}${'J'|'P'}`;
 export interface CompatibilityResult {
   score: number;
   breakdown: {
-    initials: number;
+    name: number;
     starSigns: number;
     mbti: number;
     zodiac: number;
