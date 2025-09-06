@@ -73,3 +73,8 @@
   background: #333;
   border-radius: 8px;
 }
+
+.error {
+  color: red;
+  margin-top: '1rem';
+}

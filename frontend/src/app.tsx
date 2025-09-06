@@ -1,6 +1,8 @@
 import './App.css'
 import axios from 'axios';
-import { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react';
 import { 
 	type Person, 
 	type StarSign,
@@ -29,9 +31,15 @@ function App() {
 	// holds compatibility calculation response
 	const [result, setResult] = useState<CompatibilityResult | null>(null); 
 
+	// add error and loading state 
+	// const [error, setError] = useState<string | null>(null); 
+	const [loading, setLoading] = useState(false); 
+
 	// responds to submission event 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault(); // prevent default form submission 
+		setLoading(true);
+		// setError(null);
 		
 		// sends POST API request with axios 
 		// URL - backend endpoint, data - persons object
@@ -41,12 +49,31 @@ function App() {
 				{ personA, personB }
 			);
 			setResult(response.data);
-		} catch (error) {
-			console.error('Error calculating compatibility:', error);
-		} 
+		} catch (err) {
+			const errorMsg = "Please enter both names";
+			toast.warning(errorMsg, {
+				position: "bottom-left",
+				autoClose: 2000,
+			});
+			console.error('Error calculating compatibility:', err);
+		} finally {
+			setLoading(false);
+		}
 	};
 
-  return (
+	// useEffect(() => {
+	// 	if (error) {
+	// 		notification.warning({
+	// 			type: 'warning', 
+	// 			message: '',
+	// 			duration: 3, 
+	// 			placement: 'bottomLeft'
+	// 		});
+	// 	};
+	// }, [error]);
+	// const notify = () => toast.error(error);
+	
+  	return (
 	<>
 		<h1>Compatibility Calculator</h1>
 		<div className="form-container">
@@ -210,17 +237,36 @@ function App() {
 		</div>
 
 		<div className="button-container">
-			<button type="button" onClick={handleSubmit}>Calculate!</button>
+			<button type="button" onClick={handleSubmit} disabled={loading}>
+				{loading ? 'Calculating...' : 'Calculate!'}
+			</button>
 		</div>
 
+		<ToastContainer 
+			aria-label={''}
+		    position="bottom-left"
+			autoClose={2000}
+			hideProgressBar={true}
+			newestOnTop={false}
+ 			closeButton={false}
+			rtl={false}
+			draggable
+		/>
+
+		{/* {error && (
+			<div className="error">
+				Error: {error}
+			</div>
+    	)} */}
+
 		{result && (
-      <div className="result">
-        <h3>Compatibility Score: {result.score}%</h3>
-        <pre>{JSON.stringify(result, null, 2)}</pre>
-      </div>
-    )}
+			<div className="result">
+				<h3>Compatibility Score: {result.score}%</h3>
+				<pre>{JSON.stringify(result, null, 2)}</pre>
+			</div>
+		)}
 	</>
-  )
+  	)
 }
 
 export default App
