@@ -25,7 +25,7 @@ function getScore(attr: keyof Person, a: string, b: string): number {
 function getNameScore(a: string, b: string): number {
 	a = a.trim();
 	b = b.trim();
-	const regexp = /^[^a-zA-Z]$/;
+	const regexp = /^[a-zA-Z]+$/;
 	if (!a || !b) {
 		throw new Error("Please enter both names");
 	} else if (!regexp.test(a) || !regexp.test(b)) {
@@ -36,10 +36,10 @@ function getNameScore(a: string, b: string): number {
 
 // endpoint to calculate results 
 app.post('/api/calculate', (req, res) => {
-	const {personA, personB} = req.body 
+	const {personA, personB} = req.body
 	try {
 		if (!personA || !personB) {
-      		throw new Error("Both personA and personB must be provided");
+      		res.status(400).json({error: 'Both personA and personB are required'});
     	}
 		const nameScore = getNameScore(personA.name, personB.name);
 		const starScore = getScore("starSign", personA.starSign, personB.starSign);
@@ -64,7 +64,7 @@ app.post('/api/calculate', (req, res) => {
 			}
 		});
 	} catch (err) {
-    	res.status(401).json({ err: (err as Error).message });
+    	res.status(401).json({error: (err as Error).message});
 	}
 });
 
