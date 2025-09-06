@@ -23,8 +23,13 @@ function getScore(attr: keyof Person, a: string, b: string): number {
 
 // calculate score for name 
 function getNameScore(a: string, b: string): number {
+	a = a.trim();
+	b = b.trim();
+	const regexp = /^[^a-zA-Z]$/;
 	if (!a || !b) {
-		throw new Error("Please enter a name");
+		throw new Error("Please enter both names");
+	} else if (!regexp.test(a) || !regexp.test(b)) {
+		throw new Error("Please enter only alphabetical characters");
 	}
 	return 0;
 }
@@ -32,22 +37,35 @@ function getNameScore(a: string, b: string): number {
 // endpoint to calculate results 
 app.post('/api/calculate', (req, res) => {
 	const {personA, personB} = req.body 
-	const nameScore = getNameScore(personA.name, personB.name);
-	const starScore = getScore("starSign", personA.starSign, personB.starSign);
-	const mbtiScore = getScore("mbti", personA.mbti, personB.mbti);
-	const zodiacScore = getScore("zodiac", personA.zodiac, personB.zodiac); 
-	const bloodScore = getScore("blood", personA.blood, personB.blood);  
-	const finalScore = Math.round(nameScore * 0.1 + starScore * 0.3 + mbtiScore * 0.4 + zodiacScore * 0.1 + bloodScore * 0.1);
-	res.json({ 
-		score: finalScore,
-		breakdown: {
-			initials: nameScore,
-			starSign: starScore,
-			mbti: mbtiScore,
-			zodiac: zodiacScore, 
-			blood: bloodScore
-		}
-	});
+	try {
+		if (!personA || !personB) {
+      		throw new Error("Both personA and personB must be provided");
+    	}
+		const nameScore = getNameScore(personA.name, personB.name);
+		const starScore = getScore("starSign", personA.starSign, personB.starSign);
+		const mbtiScore = getScore("mbti", personA.mbti, personB.mbti);
+		const zodiacScore = getScore("zodiac", personA.zodiac, personB.zodiac); 
+		const bloodScore = getScore("blood", personA.blood, personB.blood);  
+		const finalScore = Math.round(
+			nameScore * 0.1 + 
+			starScore * 0.3 + 
+			mbtiScore * 0.4 + 
+			bloodScore * 0.1 +
+			zodiacScore * 0.1
+		);
+		res.json({ 
+			score: finalScore,
+			breakdown: {
+				initials: nameScore,
+				starSign: starScore,
+				mbti: mbtiScore,
+				zodiac: zodiacScore, 
+				blood: bloodScore
+			}
+		});
+	} catch (err) {
+    	res.status(401).json({ err: (err as Error).message });
+	}
 });
 
 app.listen(port, () => {
