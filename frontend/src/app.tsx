@@ -2,7 +2,8 @@ import './App.css'
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useState } from 'react';
+import { scroller, Element } from "react-scroll";
+import { useState, useEffect, useRef } from 'react';
 import { 
 	type Person, 
 	type StarSign,
@@ -28,11 +29,22 @@ function App() {
 		zodiac: 'Rat',
 		blood: 'A'
 	});
-	// holds compatibility calculation response
-	const [result, setResult] = useState<CompatibilityResult | null>(null); 
+	const [result, setResult] = useState<CompatibilityResult | null>(null);  // holds calculation response
+	const [loading, setLoading] = useState(false);  // add loading state 
+	const [showResults, setShowResults] = useState(false);
 
-	// add loading state 
-	const [loading, setLoading] = useState(false); 
+	// Scroll to results when they become available
+	useEffect(() => {
+		if (showResults && result) {
+			setTimeout(() => {
+				scroller.scrollTo('results-section', {
+					duration: 500,
+					offset: -80,
+					smooth: 'true',
+				});
+			}, 200);
+		}
+	}, [showResults, result]);
 
 	// responds to submission event 
 	const handleSubmit = async (e: React.FormEvent) => {
@@ -69,13 +81,14 @@ function App() {
 			console.error('Error calculating compatibility:', err);
 		} finally {
 			setTimeout(() => setLoading(false), 1500);
+			if (!loading) setShowResults(true);
 		}
 	};
 	
   	return (
 	<>
 		<h1>Compatibility Calculator</h1>
-		<div className="form-container">
+			<div className="form-container">
 			<form onSubmit={handleSubmit}>
 				<h2 className="person">PERSON A</h2>
 				<div className="fields">
@@ -239,26 +252,28 @@ function App() {
 			<button type="button" onClick={handleSubmit} disabled={loading}>
 				{loading ? 'Calculating...' : 'Calculate!'}
 			</button>
-		</div>
+		</div>	
+
+		{showResults && result && (
+			<Element name="results-section">
+				<div className="results">
+					<h3>Compatibility Score: {result.score}%</h3>
+					<pre>{JSON.stringify(result, null, 2)}</pre>
+				</div>
+			</Element>
+		)}
 
 		<ToastContainer 
 			aria-label={''}
 			theme="colored"
-		    position="bottom-left"
+			position="bottom-left"
 			autoClose={2000}
 			hideProgressBar={true}
 			newestOnTop={false}
- 			closeButton={false}
+				closeButton={false}
 			rtl={false}
 			draggable
 		/>
-
-		{result && (
-			<div className="result">
-				<h3>Compatibility Score: {result.score}%</h3>
-				<pre>{JSON.stringify(result, null, 2)}</pre>
-			</div>
-		)}
 	</>
   	)
 }
