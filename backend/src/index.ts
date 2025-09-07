@@ -27,9 +27,9 @@ function getNameScore(a: string, b: string): number {
 	b = b.trim();
 	const regexp = /^[a-zA-Z]+$/;
 	if (!a || !b) {
-		throw new Error("Please enter both names");
+		throw new Error("Empty name");
 	} else if (!regexp.test(a) || !regexp.test(b)) {
-		throw new Error("Please enter only alphabetical characters");
+		throw new Error("Nonalphabetical characters");
 	}
 	return 0;
 }

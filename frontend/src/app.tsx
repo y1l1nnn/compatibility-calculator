@@ -31,15 +31,13 @@ function App() {
 	// holds compatibility calculation response
 	const [result, setResult] = useState<CompatibilityResult | null>(null); 
 
-	// add error and loading state 
-	// const [error, setError] = useState<string | null>(null); 
+	// add loading state 
 	const [loading, setLoading] = useState(false); 
 
 	// responds to submission event 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault(); // prevent default form submission 
 		setLoading(true);
-		// setError(null);
 		
 		// sends POST API request with axios 
 		// URL - backend endpoint, data - persons object
@@ -50,28 +48,29 @@ function App() {
 			);
 			setResult(response.data);
 		} catch (err) {
-			const errorMsg = "Please enter both names";
-			toast.warning(errorMsg, {
-				position: "bottom-left",
-				autoClose: 2000,
-			});
+			let errorMsg = "";
+			if (axios.isAxiosError(err)) { // Axios errors 
+				if (err.response) { // server error 
+					const e = err.response.data.error
+					if (e === "Nonalphabetical characters") {
+						errorMsg = "Please only enter alphabetical characters";
+					} else if (e === "Empty name") {
+						errorMsg = "Please enter both names";
+					} else {
+						errorMsg = e;
+					}
+				} else if (err.request) { // network error 
+					errorMsg = "Network error";
+				}
+			} else if (err instanceof Error) { // non-Axios errors 
+				errorMsg = err.message;
+			}
+ 			toast.warning(errorMsg, {className: 'name-error-notif'});
 			console.error('Error calculating compatibility:', err);
 		} finally {
 			setLoading(false);
 		}
 	};
-
-	// useEffect(() => {
-	// 	if (error) {
-	// 		notification.warning({
-	// 			type: 'warning', 
-	// 			message: '',
-	// 			duration: 3, 
-	// 			placement: 'bottomLeft'
-	// 		});
-	// 	};
-	// }, [error]);
-	// const notify = () => toast.error(error);
 	
   	return (
 	<>
@@ -244,6 +243,7 @@ function App() {
 
 		<ToastContainer 
 			aria-label={''}
+			theme="colored"
 		    position="bottom-left"
 			autoClose={2000}
 			hideProgressBar={true}
@@ -252,12 +252,6 @@ function App() {
 			rtl={false}
 			draggable
 		/>
-
-		{/* {error && (
-			<div className="error">
-				Error: {error}
-			</div>
-    	)} */}
 
 		{result && (
 			<div className="result">

@@ -74,7 +74,12 @@
   border-radius: 8px;
 }
 
-.error {
-  color: red;
-  margin-top: '1rem';
+.name-error-notif {
+  --toastify-toast-width: 15rem;
+  --toastify-toast-min-height: 3rem;
+  --toastify-toast-max-height: 3rem;
+  --toastify-text-color-warning: #fffffffe;
+  --toastify-color-warning: #ebdc5bb1;
+  --toastify-color-transparent: rgba(255, 255, 255, 0.5);
+  line-height: 1;
 }
