@@ -68,7 +68,7 @@ function App() {
  			toast.warning(errorMsg, {className: 'name-error-notif'});
 			console.error('Error calculating compatibility:', err);
 		} finally {
-			setLoading(false);
+			setTimeout(() => setLoading(false), 1500);
 		}
 	};
 	

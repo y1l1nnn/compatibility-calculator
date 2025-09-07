@@ -17,6 +17,7 @@
   width: 150px;              /* Fixed width for all labels */
   text-align: right;         /* Right-align the text */
   padding-right: 1rem;       /* Space between label and input */
+  line-height: 1.1;
 }
 
 /* Style the inputs and selects */
