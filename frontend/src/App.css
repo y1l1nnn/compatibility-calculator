@@ -68,11 +68,19 @@
   text-align: center;
 }
 
-.result {
-  margin-top: 2rem;
-  padding: 1rem;
+.results {
   background: #333;
-  border-radius: 8px;
+  padding-left: 10px;
+}
+
+#final-score {
+  text-align: center;
+  font-size: 1.8rem; 
+}
+
+.category-score {
+  float: right;
+  padding-right: 30rem;
 }
 
 .name-error-notif {

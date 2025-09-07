@@ -56,7 +56,7 @@ app.post('/api/calculate', (req, res) => {
 		res.json({ 
 			score: finalScore,
 			breakdown: {
-				initials: nameScore,
+				name: nameScore,
 				starSign: starScore,
 				mbti: mbtiScore,
 				zodiac: zodiacScore, 

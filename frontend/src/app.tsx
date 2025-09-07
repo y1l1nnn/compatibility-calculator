@@ -81,7 +81,7 @@ function App() {
 			console.error('Error calculating compatibility:', err);
 		} finally {
 			setTimeout(() => setLoading(false), 1500);
-			if (!loading) setShowResults(true);
+			if (loading === false) setShowResults(true);
 		}
 	};
 	
@@ -257,8 +257,16 @@ function App() {
 		{showResults && result && (
 			<Element name="results-section">
 				<div className="results">
-					<h3>Compatibility Score: {result.score}%</h3>
-					<pre>{JSON.stringify(result, null, 2)}</pre>
+					<h2 id="final-score">✨ Compatibility Score: {result.score}% ✨</h2>
+					<h3>Results Breakdown:</h3>
+					{/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
+
+					{Object.entries(result.breakdown).map(([category, score]) => (
+						<div key={category} className="breakdown-item">
+							<span className="category"> {category} compatibility</span>
+							<span className="category-score"> {score}%</span>
+						</div>
+					))}
 				</div>
 			</Element>
 		)}
