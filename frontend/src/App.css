@@ -1,8 +1,19 @@
 /* Applies styles specific to the main App component */
+@font-face {
+  font-family: bubble,sans-serif;
+  font-variation-settings: 'wght' 300;
+  src: url(https://fonts.adobe.com/fonts/ohno-softie-variable);
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+h1 {
+  color: #e86648;
+  font: bubble; 
 }
 
 .fields label {
@@ -41,14 +52,13 @@
 }
 
 .button-container button {
-  padding-top: 0.8rem;
   font-size: 1.1rem;
-  background-color: #646cff;
+  background-color: #d4573b;
   color: white;
 }
 
 .button-container button:hover {
-  background-color: #535bf2;
+  background-color: #943a35;
 }
 
 .form-container {
@@ -70,7 +80,12 @@
 
 .results {
   background: #333;
-  padding-left: 10px;
+  border-radius: 10px;
+}
+
+.results-breakdown {
+  /* text-align: center; */
+  padding-left: 1rem;
 }
 
 #final-score {
@@ -78,9 +93,14 @@
   font-size: 1.8rem; 
 }
 
+.results h2, .results h3 {
+  margin: 0;
+  padding: 0;
+}
+
 .category-score {
   float: right;
-  padding-right: 30rem;
+  padding-right: 33rem;
 }
 
 .name-error-notif {
@@ -88,7 +108,7 @@
   --toastify-toast-min-height: 3rem;
   --toastify-toast-max-height: 3rem;
   --toastify-text-color-warning: #fffffffe;
-  --toastify-color-warning: #ebdc5bb1;
+  --toastify-color-warning: #ebc55bb1;
   --toastify-color-transparent: rgba(255, 255, 255, 0.5);
   line-height: 1;
 }

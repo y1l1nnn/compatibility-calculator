@@ -258,15 +258,18 @@ function App() {
 			<Element name="results-section">
 				<div className="results">
 					<h2 id="final-score">✨ Compatibility Score: {result.score}% ✨</h2>
-					<h3>Results Breakdown:</h3>
-					{/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
 
-					{Object.entries(result.breakdown).map(([category, score]) => (
-						<div key={category} className="breakdown-item">
-							<span className="category"> {category} compatibility</span>
-							<span className="category-score"> {score}%</span>
-						</div>
-					))}
+					<div className="results-breakdown">
+						<h3 id ="breakdown-title">Results Breakdown:</h3>
+						{/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
+
+						{Object.entries(result.breakdown).map(([category, score]) => (
+							<div key={category} className="breakdown-item">
+								<span className="category"> {category} compatibility</span>
+								<span className="category-score"> {score}%</span>
+							</div>
+						))}
+					</div>
 				</div>
 			</Element>
 		)}
@@ -278,7 +281,7 @@ function App() {
 			autoClose={2000}
 			hideProgressBar={true}
 			newestOnTop={false}
-				closeButton={false}
+			closeButton={false}
 			rtl={false}
 			draggable
 		/>
