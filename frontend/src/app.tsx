@@ -85,7 +85,6 @@ function App() {
 			setTimeout(() => setLoading(false), 1500);
 		}
 	};
-	
   	return (
 	<>
 		<h1>Compatibility Calculator</h1>
@@ -267,9 +266,15 @@ function App() {
 							<div key={category} className="breakdown-item">
 								<span className="category"> {category} compatibility</span>
 								<span className="category-score"> {score}%</span>
+								<div className="progress-bar" style={{width: `${score}`}}></div> 
 							</div>
 						))}
 					</div>
+				</div>
+				<div className="results-footer">
+					<p>Share these results!</p>
+					<p>What do you think of these results?</p>
+					<p>Feedback</p>
 				</div>
 			</Element>
 		)}

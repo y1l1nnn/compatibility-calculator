@@ -1,12 +1,5 @@
 /* Applies styles specific to the main App component */
-
-@import url('https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Chango&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Coiny&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sono:wght@200..800&display=swap');
-
 
 #root {
   max-width: 1280px;
@@ -15,6 +8,8 @@
 }
 
 h1 {
+  line-height: 1.1;
+  text-align: center;
   color: #e86648;
   font-family: "Balsamiq Sans", serif; 
   font-size: 3rem; 
@@ -89,6 +84,8 @@ h1 {
 .results {
   background: #333;
   border-radius: 10px;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
 }
 
 .results-breakdown {
