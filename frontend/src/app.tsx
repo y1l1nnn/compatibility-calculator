@@ -59,6 +59,7 @@ function App() {
 				{ personA, personB }
 			);
 			setResult(response.data);
+			setTimeout(() => setShowResults(true), 1500);
 		} catch (err) {
 			let errorMsg = "";
 			if (axios.isAxiosError(err)) { // Axios errors 
@@ -79,9 +80,9 @@ function App() {
 			}
  			toast.warning(errorMsg, {className: 'name-error-notif'});
 			console.error('Error calculating compatibility:', err);
+			setLoading(false);
 		} finally {
 			setTimeout(() => setLoading(false), 1500);
-			if (loading === false) setShowResults(true);
 		}
 	};
 	
