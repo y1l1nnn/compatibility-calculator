@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { scroller, Element } from "react-scroll";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { 
 	type Person, 
 	type StarSign,

@@ -92,12 +92,12 @@ h1 {
 }
 
 .results-breakdown {
-  /* text-align: center; */
   padding-left: 1rem;
 }
 
 #final-score {
   text-align: center;
+  font-family: "Balsamiq Sans", serif;
   font-size: 1.8rem; 
 }
 
