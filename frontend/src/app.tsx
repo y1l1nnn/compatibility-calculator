@@ -262,7 +262,6 @@ function App() {
 
 					<div className="results-breakdown">
 						<h3 id ="breakdown-title">Results Breakdown:</h3>
-						{/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
 
 						{Object.entries(result.breakdown).map(([category, score]) => (
 							<div key={category} className="breakdown-item">

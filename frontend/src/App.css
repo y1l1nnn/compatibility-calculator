@@ -1,9 +1,12 @@
 /* Applies styles specific to the main App component */
-@font-face {
-  font-family: bubble,sans-serif;
-  font-variation-settings: 'wght' 300;
-  src: url(https://fonts.adobe.com/fonts/ohno-softie-variable);
-}
+
+@import url('https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chango&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Coiny&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sono:wght@200..800&display=swap');
+
 
 #root {
   max-width: 1280px;
@@ -13,7 +16,10 @@
 
 h1 {
   color: #e86648;
-  font: bubble; 
+  font-family: "Balsamiq Sans", serif; 
+  font-size: 3rem; 
+  letter-spacing: 3px;
+
 }
 
 .fields label {
@@ -52,6 +58,8 @@ h1 {
 }
 
 .button-container button {
+  font-family: "Balsamiq Sans", serif;
+  letter-spacing: 0.1rem;
   font-size: 1.1rem;
   background-color: #d4573b;
   color: white;
