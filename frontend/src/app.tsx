@@ -32,6 +32,7 @@ function App() {
 	const [result, setResult] = useState<CompatibilityResult | null>(null);  // holds calculation response
 	const [loading, setLoading] = useState(false);  // add loading state 
 	const [showResults, setShowResults] = useState(false);
+	const [feedback, setFeedback] = useState('');
 
 	// Scroll to results when they become available
 	useEffect(() => {
@@ -78,13 +79,31 @@ function App() {
 			} else if (err instanceof Error) { // non-Axios errors 
 				errorMsg = err.message;
 			}
- 			toast.warning(errorMsg, {className: 'name-error-notif'});
+ 			toast.warning(errorMsg, {className: 'warning-notif'});
 			console.error('Error calculating compatibility:', err);
 			setLoading(false);
 		} finally {
 			setTimeout(() => setLoading(false), 1500);
 		}
 	};
+
+	// feedback submission handler 
+	const handleFeedbackSubmit = async () => {
+		if (!feedback.trim()) {
+			toast.warning('Please enter feedback 💛', {className: 'warning-notif'});
+			return;
+		}
+		try {
+			console.log('Feedback submitted:', feedback);
+			toast.success('Thank you for your feedback! ❤️', {className: 'success-notif'});
+			setFeedback(''); // Clear the input
+		
+		} catch (error) {
+			console.error('Feedback submission error:', error);
+			toast.error('Failed to submit feedback. Please try again.');
+		}
+	}
+
   	return (
 	<>
 		<h1>Compatibility Calculator</h1>
@@ -177,7 +196,7 @@ function App() {
 							type="text"
 							placeholder="Enter name"
 							value={personB.name}
-							onChange={(e) => setPersonB({ ...personB, name: e.target.value })}
+							onChange={(e) => setPersonB({ ...personB, name: e.target.value })} 
 							/>
 					</label>
 					<label>
@@ -274,11 +293,14 @@ function App() {
 				<div className="results-footer">
 					<h3>Share your results!</h3>
 					<p>What do you think of these results? 🤔</p>
-					<input 
-						type="text"
-						placeholder="Feedback"
-					/>
-					<button type="button" onClick={handleSubmit}>
+					<label>
+						<textarea 
+							placeholder="Feedback"
+							value={feedback}
+							onChange={(e) => setFeedback(e.target.value)}
+						/>
+					</label>
+					<button type="button" onClick={handleFeedbackSubmit}>
 						{'Submit'}
 					</button>
 				</div>

@@ -86,6 +86,7 @@ h1 {
   border-radius: 10px;
   padding-top: 0.5rem;
   padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .results-breakdown {
@@ -112,40 +113,57 @@ h1 {
   background: #333;
   border-radius: 10px;
   line-height: 0.5rem;
-  width: 35rem;
-  display: grid;
-  place-items: center      
+  width: 80%;
+  max-width: 500px;
+  margin: 1rem auto 0 auto;
+  padding-top: 0.1rem;
+  text-align: center;
 }
 
-.results-footer input {
-  padding-top: 0;
+.results-footer textarea {
+  padding-top: 0.5rem;
   padding-left: 0.5rem;
-  font-size: 1.1rem;
-  height: 4rem;   
+  resize: none;
+  font-size: 1rem;
+  height: 2.5rem;   
   width: 90%;
   border-radius: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc8f;
+  margin-bottom: 0.8rem;
 }
 
 .results-footer button {
   font-family: "Balsamiq Sans", serif;
   letter-spacing: 0.1rem;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   background-color: #a44848;
   color: white;
   padding: 4px 10px;
+  margin-bottom: 0.6rem;
+
 }
 
 .results-footer button:hover {
     background-color: #773636;
 }
 
-.name-error-notif {
+.warning-notif {
   --toastify-toast-width: 15rem;
   --toastify-toast-min-height: 3rem;
   --toastify-toast-max-height: 3rem;
   --toastify-text-color-warning: #fffffffe;
   --toastify-color-warning: #ebc55bb1;
   --toastify-color-transparent: rgba(255, 255, 255, 0.5);
+  line-height: 1;
+}
+
+.success-notif {
+  --toastify-toast-width: 17rem;
+  --toastify-toast-min-height: 3rem;
+  --toastify-toast-max-height: 3rem;
+  --toastify-text-color-success: #fffffffe;
+  --toastify-color-success: #dd756eb6;
+  --toastify-color-transparent: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
   line-height: 1;
 }
