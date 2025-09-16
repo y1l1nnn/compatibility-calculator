@@ -10,7 +10,7 @@
 h1 {
   line-height: 1.1;
   text-align: center;
-  color: #e86648;
+  color: #d96767;
   font-family: "Balsamiq Sans", serif; 
   font-size: 3rem; 
   letter-spacing: 3px;
@@ -56,12 +56,12 @@ h1 {
   font-family: "Balsamiq Sans", serif;
   letter-spacing: 0.1rem;
   font-size: 1.1rem;
-  background-color: #d4573b;
+  background-color: #d96767;
   color: white;
 }
 
 .button-container button:hover {
-  background-color: #943a35;
+  background-color: #a44848;
 }
 
 .form-container {
@@ -106,6 +106,38 @@ h1 {
 .category-score {
   float: right;
   padding-right: 33rem;
+}
+
+.results-footer {
+  background: #333;
+  border-radius: 10px;
+  line-height: 0.5rem;
+  width: 35rem;
+  display: grid;
+  place-items: center      
+}
+
+.results-footer input {
+  padding-top: 0;
+  padding-left: 0.5rem;
+  font-size: 1.1rem;
+  height: 4rem;   
+  width: 90%;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+}
+
+.results-footer button {
+  font-family: "Balsamiq Sans", serif;
+  letter-spacing: 0.1rem;
+  font-size: 1.1rem;
+  background-color: #a44848;
+  color: white;
+  padding: 4px 10px;
+}
+
+.results-footer button:hover {
+    background-color: #773636;
 }
 
 .name-error-notif {

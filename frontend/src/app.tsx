@@ -272,9 +272,15 @@ function App() {
 					</div>
 				</div>
 				<div className="results-footer">
-					<p>Share these results!</p>
-					<p>What do you think of these results?</p>
-					<p>Feedback</p>
+					<h3>Share your results!</h3>
+					<p>What do you think of these results? 🤔</p>
+					<input 
+						type="text"
+						placeholder="Feedback"
+					/>
+					<button type="button" onClick={handleSubmit}>
+						{'Submit'}
+					</button>
 				</div>
 			</Element>
 		)}
