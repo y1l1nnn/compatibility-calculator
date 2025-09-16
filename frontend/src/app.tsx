@@ -95,7 +95,7 @@ function App() {
 		}
 		try {
 			console.log('Feedback submitted:', feedback);
-			toast.success('Thank you for your feedback! ❤️', {className: 'success-notif'});
+			toast.success('Thank you for your feedback! 🤍', {className: 'success-notif'});
 			setFeedback(''); // Clear the input
 		
 		} catch (error) {
@@ -292,6 +292,10 @@ function App() {
 				</div>
 				<div className="results-footer">
 					<h3>Share your results!</h3>
+					
+					<ul className="share_list" aria-label="share">
+					</ul>
+
 					<p>What do you think of these results? 🤔</p>
 					<label>
 						<textarea 

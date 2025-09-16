@@ -127,7 +127,7 @@ h1 {
   font-size: 1rem;
   height: 2.5rem;   
   width: 90%;
-  border-radius: 15px;
+  border-radius: 10px;
   border: 1px solid #cccccc8f;
   margin-bottom: 0.8rem;
 }
@@ -159,10 +159,10 @@ h1 {
 
 .success-notif {
   --toastify-toast-width: 17rem;
-  --toastify-toast-min-height: 3rem;
-  --toastify-toast-max-height: 3rem;
+  --toastify-toast-min-height: 2.5rem;
+  --toastify-toast-max-height: 2.5rem;
   --toastify-text-color-success: #fffffffe;
-  --toastify-color-success: #dd756eb6;
+  --toastify-color-success: #b1dd6eac;
   --toastify-color-transparent: rgba(255, 255, 255, 0.5);
   font-size: 0.9rem;
   line-height: 1;
