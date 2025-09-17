@@ -25,6 +25,6 @@ Below are some of the sources used
 
 To run webapp
 * `/frontend $ npm run dev`
-* `/backend $ npm run`
+* `/backend $ npm start`
 
 
