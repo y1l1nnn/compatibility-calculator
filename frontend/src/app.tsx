@@ -12,6 +12,7 @@ import {
 	type BloodType,
 	type CompatibilityResult 
 } from '../../backend/src/types';
+import FloatingHearts from './components/FloatingHearts';
 
 // collects user input 
 function App() {
@@ -106,222 +107,225 @@ function App() {
 
   	return (
 	<>
-		<h1>Compatibility Calculator</h1>
-			<div className="form-container">
-			<form onSubmit={handleSubmit}>
-				<h2 className="person">PERSON A</h2>
-				<div className="fields">
-					<label>
-						<span>First Name:</span>
-						<input 
-							type="text"
-							placeholder="Enter name"
-							value={personA.name}
-							onChange={(e) => setPersonA({ ...personA, name: e.target.value })}
-							/>
-					</label>
-					<label>
-						<span>Zodiac Star Sign:</span>
-						<select value={personA.starSign} onChange={(e) => setPersonA({...personA, starSign: e.target.value as StarSign})}>
-							<option value="Aries">Aries</option>
-							<option value="Taurus">Taurus</option>
-							<option value="Gemini">Gemini</option>
-							<option value="Cancer">Cancer</option>
-							<option value="Leo">Leo</option>
-							<option value="Virgo">Virgo</option>
-							<option value="Libra">Libra</option>
-							<option value="Scorpio">Scorpio</option>
-							<option value="Saggitarius">Saggitarius</option>
-							<option value="Capricorn">Capricorn</option>
-							<option value="Aquarius">Aquarius</option>
-							<option value="Pisces">Pisces</option>
-						</select>
-					</label>
-					<label>
-						<span>MBTI:</span> 
-						<select value={personA.mbti} onChange={(e) => setPersonA({...personA, mbti: e.target.value as MBTI})}>
-							<option value="INFP">INFP</option>
-							<option value="ENFP">ENFP</option>
-							<option value="INFJ">INFJ</option>
-							<option value="ENFJ">ENFJ</option>
-							<option value="INTJ">INTJ</option>
-							<option value="ENTJ">ENTJ</option>
-							<option value="INTP">INTP</option>
-							<option value="ENTP">ENTP</option>
-							<option value="ISFP">ISFP</option>
-							<option value="ESFP">ESFP</option>
-							<option value="ISTP">ISTP</option>
-							<option value="ESTP">ESTP</option>
-							<option value="ISFJ">ISFJ</option>
-							<option value="ESFJ">ESFJ</option>
-							<option value="ISTJ">ISTJ</option>
-							<option value="ESTJ">ESTJ</option>
-						</select>
-					</label>
-					<label>
-						<span>Chinese Zodiac Animal:</span>
-						<select value={personA.zodiac} onChange={(e) => setPersonA({...personA, zodiac: e.target.value as ZodiacAnimal})}>
-							<option value="Rat">Rat</option>
-							<option value="Ox">Ox</option>
-							<option value="Tiger">Tiger</option>
-							<option value="Rabbit">Rabbit</option>
-							<option value="Dragon">Dragon</option>
-							<option value="Snake">Snake</option>
-							<option value="Horse">Horse</option>
-							<option value="Goat">Goat</option>
-							<option value="Monkey">Monkey</option>
-							<option value="Rooster">Rooster</option>
-							<option value="Dog">Dog</option>
-							<option value="Pig">Pig</option>
-						</select>
-					</label>
-					<label>
-						<span>Blood Type:</span>
-						<select value={personA.blood} onChange={(e) => setPersonA({...personA, blood: e.target.value as BloodType})}>
-							<option value="A">A</option>
-							<option value="B">B</option>
-							<option value="AB">AB</option>
-							<option value="O">O</option>
-						</select>
-					</label>
-				</div>
-			</form>
-
-			<form onSubmit={handleSubmit}>
-				<h2 className="person">PERSON B</h2>
-				<div className="fields">
-					<label>
-						<span>First Name:</span>
-						<input 
-							type="text"
-							placeholder="Enter name"
-							value={personB.name}
-							onChange={(e) => setPersonB({ ...personB, name: e.target.value })} 
-							/>
-					</label>
-					<label>
-						<span>Zodiac Star Sign:</span>
-						<select value={personB.starSign} onChange={(e) => setPersonB({...personB, starSign: e.target.value as StarSign})}>
-							<option value="Aries">Aries</option>
-							<option value="Taurus">Taurus</option>
-							<option value="Gemini">Gemini</option>
-							<option value="Cancer">Cancer</option>
-							<option value="Leo">Leo</option>
-							<option value="Virgo">Virgo</option>
-							<option value="Libra">Libra</option>
-							<option value="Scorpio">Scorpio</option>
-							<option value="Saggitarius">Saggitarius</option>
-							<option value="Capricorn">Capricorn</option>
-							<option value="Aquarius">Aquarius</option>
-							<option value="Pisces">Pisces</option>
-						</select>
-					</label>
-					<label>
-						<span>MBTI:</span> 
-						<select value={personB.mbti} onChange={(e) => setPersonB({...personB, mbti: e.target.value as MBTI})}>
-							<option value="INFP">INFP</option>
-							<option value="ENFP">ENFP</option>
-							<option value="INFJ">INFJ</option>
-							<option value="ENFJ">ENFJ</option>
-							<option value="INTJ">INTJ</option>
-							<option value="ENTJ">ENTJ</option>
-							<option value="INTP">INTP</option>
-							<option value="ENTP">ENTP</option>
-							<option value="ISFP">ISFP</option>
-							<option value="ESFP">ESFP</option>
-							<option value="ISTP">ISTP</option>
-							<option value="ESTP">ESTP</option>
-							<option value="ISFJ">ISFJ</option>
-							<option value="ESFJ">ESFJ</option>
-							<option value="ISTJ">ISTJ</option>
-							<option value="ESTJ">ESTJ</option>
-						</select>
-					</label>
-					<label>
-						<span>Chinese Zodiac Animal:</span>
-						<select value={personB.zodiac} onChange={(e) => setPersonB({...personB, zodiac: e.target.value as ZodiacAnimal})}>
-							<option value="Rat">Rat</option>
-							<option value="Ox">Ox</option>
-							<option value="Tiger">Tiger</option>
-							<option value="Rabbit">Rabbit</option>
-							<option value="Dragon">Dragon</option>
-							<option value="Snake">Snake</option>
-							<option value="Horse">Horse</option>
-							<option value="Goat">Goat</option>
-							<option value="Monkey">Monkey</option>
-							<option value="Rooster">Rooster</option>
-							<option value="Dog">Dog</option>
-							<option value="Pig">Pig</option>
-						</select>
-					</label>
-					<label>
-						<span>Blood Type:</span>
-						<select value={personB.blood} onChange={(e) => setPersonB({...personB, blood: e.target.value as BloodType})}>
-							<option value="A">A</option>
-							<option value="B">B</option>
-							<option value="AB">AB</option>
-							<option value="O">O</option>
-						</select>
-					</label>
-				</div>
-			</form>
-		</div>
-
-		<div className="button-container">
-			<button type="button" onClick={handleSubmit} disabled={loading}>
-				{loading ? 'Calculating...' : 'Calculate!'}
-			</button>
-		</div>	
-
-		{showResults && result && (
-			<Element name="results-section">
-				<div className="results">
-					<h2 id="final-score">✨ Compatibility Score: {result.score}% ✨</h2>
-
-					<div className="results-breakdown">
-						<h3 id ="breakdown-title">Results Breakdown:</h3>
-
-						{Object.entries(result.breakdown).map(([category, score]) => (
-							<div key={category} className="breakdown-item">
-								<span className="category"> {category} compatibility</span>
-								<span className="category-score"> {score}%</span>
-								<div className="progress-bar" style={{width: `${score}`}}></div> 
-							</div>
-						))}
+		<FloatingHearts />
+		<div>
+			<h1>Compatibility Calculator</h1>
+				<div className="form-container">
+				<form onSubmit={handleSubmit}>
+					<h2 className="person">PERSON A</h2>
+					<div className="fields">
+						<label>
+							<span>First Name:</span>
+							<input 
+								type="text"
+								placeholder="Enter name"
+								value={personA.name}
+								onChange={(e) => setPersonA({ ...personA, name: e.target.value })}
+								/>
+						</label>
+						<label>
+							<span>Zodiac Star Sign:</span>
+							<select value={personA.starSign} onChange={(e) => setPersonA({...personA, starSign: e.target.value as StarSign})}>
+								<option value="Aries">Aries</option>
+								<option value="Taurus">Taurus</option>
+								<option value="Gemini">Gemini</option>
+								<option value="Cancer">Cancer</option>
+								<option value="Leo">Leo</option>
+								<option value="Virgo">Virgo</option>
+								<option value="Libra">Libra</option>
+								<option value="Scorpio">Scorpio</option>
+								<option value="Saggitarius">Saggitarius</option>
+								<option value="Capricorn">Capricorn</option>
+								<option value="Aquarius">Aquarius</option>
+								<option value="Pisces">Pisces</option>
+							</select>
+						</label>
+						<label>
+							<span>MBTI:</span> 
+							<select value={personA.mbti} onChange={(e) => setPersonA({...personA, mbti: e.target.value as MBTI})}>
+								<option value="INFP">INFP</option>
+								<option value="ENFP">ENFP</option>
+								<option value="INFJ">INFJ</option>
+								<option value="ENFJ">ENFJ</option>
+								<option value="INTJ">INTJ</option>
+								<option value="ENTJ">ENTJ</option>
+								<option value="INTP">INTP</option>
+								<option value="ENTP">ENTP</option>
+								<option value="ISFP">ISFP</option>
+								<option value="ESFP">ESFP</option>
+								<option value="ISTP">ISTP</option>
+								<option value="ESTP">ESTP</option>
+								<option value="ISFJ">ISFJ</option>
+								<option value="ESFJ">ESFJ</option>
+								<option value="ISTJ">ISTJ</option>
+								<option value="ESTJ">ESTJ</option>
+							</select>
+						</label>
+						<label>
+							<span>Chinese Zodiac Animal:</span>
+							<select value={personA.zodiac} onChange={(e) => setPersonA({...personA, zodiac: e.target.value as ZodiacAnimal})}>
+								<option value="Rat">Rat</option>
+								<option value="Ox">Ox</option>
+								<option value="Tiger">Tiger</option>
+								<option value="Rabbit">Rabbit</option>
+								<option value="Dragon">Dragon</option>
+								<option value="Snake">Snake</option>
+								<option value="Horse">Horse</option>
+								<option value="Goat">Goat</option>
+								<option value="Monkey">Monkey</option>
+								<option value="Rooster">Rooster</option>
+								<option value="Dog">Dog</option>
+								<option value="Pig">Pig</option>
+							</select>
+						</label>
+						<label>
+							<span>Blood Type:</span>
+							<select value={personA.blood} onChange={(e) => setPersonA({...personA, blood: e.target.value as BloodType})}>
+								<option value="A">A</option>
+								<option value="B">B</option>
+								<option value="AB">AB</option>
+								<option value="O">O</option>
+							</select>
+						</label>
 					</div>
-				</div>
-				<div className="results-footer">
-					<h3>Share your results!</h3>
-					
-					<ul className="share_list" aria-label="share">
-					</ul>
+				</form>
 
-					<p>What do you think of these results? 🤔</p>
-					<label>
-						<textarea 
-							placeholder="Feedback"
-							value={feedback}
-							onChange={(e) => setFeedback(e.target.value)}
-						/>
-					</label>
-					<button type="button" onClick={handleFeedbackSubmit}>
-						{'Submit'}
-					</button>
-				</div>
-			</Element>
-		)}
+				<form onSubmit={handleSubmit}>
+					<h2 className="person">PERSON B</h2>
+					<div className="fields">
+						<label>
+							<span>First Name:</span>
+							<input 
+								type="text"
+								placeholder="Enter name"
+								value={personB.name}
+								onChange={(e) => setPersonB({ ...personB, name: e.target.value })} 
+								/>
+						</label>
+						<label>
+							<span>Zodiac Star Sign:</span>
+							<select value={personB.starSign} onChange={(e) => setPersonB({...personB, starSign: e.target.value as StarSign})}>
+								<option value="Aries">Aries</option>
+								<option value="Taurus">Taurus</option>
+								<option value="Gemini">Gemini</option>
+								<option value="Cancer">Cancer</option>
+								<option value="Leo">Leo</option>
+								<option value="Virgo">Virgo</option>
+								<option value="Libra">Libra</option>
+								<option value="Scorpio">Scorpio</option>
+								<option value="Saggitarius">Saggitarius</option>
+								<option value="Capricorn">Capricorn</option>
+								<option value="Aquarius">Aquarius</option>
+								<option value="Pisces">Pisces</option>
+							</select>
+						</label>
+						<label>
+							<span>MBTI:</span> 
+							<select value={personB.mbti} onChange={(e) => setPersonB({...personB, mbti: e.target.value as MBTI})}>
+								<option value="INFP">INFP</option>
+								<option value="ENFP">ENFP</option>
+								<option value="INFJ">INFJ</option>
+								<option value="ENFJ">ENFJ</option>
+								<option value="INTJ">INTJ</option>
+								<option value="ENTJ">ENTJ</option>
+								<option value="INTP">INTP</option>
+								<option value="ENTP">ENTP</option>
+								<option value="ISFP">ISFP</option>
+								<option value="ESFP">ESFP</option>
+								<option value="ISTP">ISTP</option>
+								<option value="ESTP">ESTP</option>
+								<option value="ISFJ">ISFJ</option>
+								<option value="ESFJ">ESFJ</option>
+								<option value="ISTJ">ISTJ</option>
+								<option value="ESTJ">ESTJ</option>
+							</select>
+						</label>
+						<label>
+							<span>Chinese Zodiac Animal:</span>
+							<select value={personB.zodiac} onChange={(e) => setPersonB({...personB, zodiac: e.target.value as ZodiacAnimal})}>
+								<option value="Rat">Rat</option>
+								<option value="Ox">Ox</option>
+								<option value="Tiger">Tiger</option>
+								<option value="Rabbit">Rabbit</option>
+								<option value="Dragon">Dragon</option>
+								<option value="Snake">Snake</option>
+								<option value="Horse">Horse</option>
+								<option value="Goat">Goat</option>
+								<option value="Monkey">Monkey</option>
+								<option value="Rooster">Rooster</option>
+								<option value="Dog">Dog</option>
+								<option value="Pig">Pig</option>
+							</select>
+						</label>
+						<label>
+							<span>Blood Type:</span>
+							<select value={personB.blood} onChange={(e) => setPersonB({...personB, blood: e.target.value as BloodType})}>
+								<option value="A">A</option>
+								<option value="B">B</option>
+								<option value="AB">AB</option>
+								<option value="O">O</option>
+							</select>
+						</label>
+					</div>
+				</form>
+			</div>
 
-		<ToastContainer 
-			aria-label={''}
-			theme="colored"
-			position="bottom-left"
-			autoClose={2000}
-			hideProgressBar={true}
-			newestOnTop={false}
-			closeButton={false}
-			rtl={false}
-			draggable
-		/>
+			<div className="button-container">
+				<button type="button" onClick={handleSubmit} disabled={loading}>
+					{loading ? 'Calculating...' : 'Calculate!'}
+				</button>
+			</div>	
+
+			{showResults && result && (
+				<Element name="results-section">
+					<div className="results">
+						<h2 id="final-score">✨ Compatibility Score: {result.score}% ✨</h2>
+
+						<div className="results-breakdown">
+							<h3 id ="breakdown-title">Results Breakdown:</h3>
+
+							{Object.entries(result.breakdown).map(([category, score]) => (
+								<div key={category} className="breakdown-item">
+									<span className="category"> {category} compatibility</span>
+									<span className="category-score"> {score}%</span>
+									<div className="progress-bar" style={{width: `${score}`}}></div> 
+								</div>
+							))}
+						</div>
+					</div>
+					<div className="results-footer">
+						<h3>Share your results!</h3>
+						
+						<ul className="share_list" aria-label="share">
+						</ul>
+
+						<p>What do you think of these results? 🤔</p>
+						<label>
+							<textarea 
+								placeholder="Feedback"
+								value={feedback}
+								onChange={(e) => setFeedback(e.target.value)}
+							/>
+						</label>
+						<button type="button" onClick={handleFeedbackSubmit}>
+							{'Submit'}
+						</button>
+					</div>
+				</Element>
+			)}
+
+			<ToastContainer 
+				aria-label={''}
+				theme="colored"
+				position="bottom-left"
+				autoClose={2000}
+				hideProgressBar={true}
+				newestOnTop={false}
+				closeButton={false}
+				rtl={false}
+				draggable
+			/>
+		</div>
 	</>
   	)
 }
