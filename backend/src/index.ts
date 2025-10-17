@@ -31,9 +31,10 @@ function getNameScore(a: string, b: string): number {
 	} else if (!regexp.test(a) || !regexp.test(b)) {
 		throw new Error("Nonalphabetical characters");
 	}
-	const aNamank = calculateNameNumber(a);
-	const bNamank = calculateNameNumber(b);
-	return 0;
+	const aNamank = calculateNameNumber(a).toString();
+	const bNamank = calculateNameNumber(b).toString();
+	
+	return getScore("name", aNamank, bNamank);
 }
 
 // calculate the name number for a name
@@ -48,18 +49,20 @@ function calculateNameNumber(name: string) : number {
 	namankMap.set(7, ['g', 'p', 'y']);
 	namankMap.set(8, ['h', 'q', 'z']);
 	namankMap.set(9, ['i', 'r']);
-	let nameSum = 0;
-	for (const char of name) {
-		nameSum += getKey(namankMap, char);
-	}
-	let namankStr = nameSum.toString();
+	// get name character sum
 	let namank = 0;
-	for (const digit of namankStr) {
-		namank += parseInt(digit, 10);
+	for (const char of name) {
+		namank += getKey(namankMap, char);
+	}
+	// reduce to single-digit number
+	const single_digit = 9;
+	while (namank > single_digit) {
+		namank = namank.toString().split('').map(Number).reduce((a, b) => a + b, 0);
 	}
 	return namank;
 }
 
+// get key from value in Map
 function getKey(map: Map<number, string[]>, char: string): number {
 	for (let [key, values] of map.entries()) {
 		if (values.includes(char)) return key;
