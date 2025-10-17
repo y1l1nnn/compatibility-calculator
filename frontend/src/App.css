@@ -17,35 +17,51 @@ h1 {
 
 }
 
-.fields label {
-  display: flex;              /* Use flexbox layout */
-  align-items: center;        /* Vertically center items */
-  margin-bottom: 1rem;        /* Space between each label-input pair */
+.form-container {
+  display: flex;
+  gap: 2rem;            
 }
 
-/* Right-align the label text */
+.form-container form {
+  flex: 1;     
+  padding: 1rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+}
+
+.person {
+  margin-top: 0;
+  text-align: center;
+}
+
+
+.fields label {
+  display: flex;        
+  align-items: center;   
+  margin-bottom: 1rem; 
+  justify-content: center;
+  margin-right: 5rem;
+}
+
 .fields label span {
   display: inline-block;
-  width: 150px;              /* Fixed width for all labels */
-  text-align: right;         /* Right-align the text */
-  padding-right: 1rem;       /* Space between label and input */
+  width: 150px;        
+  text-align: right;      
+  padding-right: 1rem;      
   line-height: 1.1;
 }
 
-/* Style the inputs and selects */
 .fields input, .fields select {
   padding: 0.5rem;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
 
-/* Make selects match input height */
 .fields select {
   height: 2.25rem;   
   min-width: 156px;        
 }
 
-/* Ensures button is centered */
 .button-container {
   display: flex;
   justify-content: center;
@@ -64,39 +80,27 @@ h1 {
   background-color: #a44848;
 }
 
-.form-container {
-  display: flex;
-  gap: 2rem;                /* Space between the two forms */
-}
-
-.form-container form {
-  flex: 1;                  /* Makes both forms take equal width */
-  padding: 1rem;
-  border: 1px solid #444;
-  border-radius: 8px;
-}
-
-.person {
-  margin-top: 0;
-  text-align: center;
-}
-
 .results {
   background: #333;
   border-radius: 10px;
   padding-top: 0.5rem;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .results-breakdown {
   padding-left: 1rem;
 }
 
+#breakdown-title {
+  font-size: 1.5rem;
+  color: #ccc
+}
+
 #final-score {
   text-align: center;
   font-family: "Balsamiq Sans", serif;
-  font-size: 1.8rem; 
+  font-size: 2.3rem; 
+  padding: 0.5rem 0 0.5rem 0;
 }
 
 .results h2, .results h3 {
@@ -104,17 +108,49 @@ h1 {
   padding: 0;
 }
 
+.breakdown-item {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.breakdown-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category {
+  margin-right: auto;
+  color: #b97c7c;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
 .category-score {
   float: right;
-  padding-right: 33rem;
+  padding-right: 1rem;
+}
+
+.progress-bar {
+  opacity: 50%;
+  margin-right: 1rem;
+}
+
+.comment {
+  margin-top: 0.8rem;
+  padding: 0rem 0 1rem 0;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 
 .results-footer {
   background: #333;
   border-radius: 10px;
   line-height: 0.5rem;
-  width: 80%;
-  max-width: 500px;
+  min-width: 70%;
+  max-width: 70%;
   margin: 1rem auto 0 auto;
   padding-top: 0.1rem;
   text-align: center;
@@ -129,7 +165,7 @@ h1 {
   width: 90%;
   border-radius: 10px;
   border: 1px solid #cccccc8f;
-  margin-bottom: 0.8rem;
+  margin: 0.8rem;
 }
 
 .results-footer button {

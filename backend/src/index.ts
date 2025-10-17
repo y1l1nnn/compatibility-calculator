@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
-import {Person} from './types'
+import { Person } from './types';
 
 const app = express();
 const port = 5001; 
@@ -10,15 +10,25 @@ const port = 5001;
 app.use(cors());
 app.use(express.json());
 
-// read attr_compatibility.json 
+// read attr_compat_scores.json and attr_compat_comments.json 
 const pathname = path.join(__dirname, 'attr_compat_scores.json');
 const data = fs.readFileSync(pathname, 'utf-8');
 const compatibilityData = JSON.parse(data);
 
-// get score of given attribute 
+const pathname2 = path.join(__dirname, 'attr_compat_comments.json');
+const data2 = fs.readFileSync(pathname2, 'utf-8');
+const commentsData = JSON.parse(data2);
+
+// get score of given attributes 
 function getScore(attr: keyof Person, a: string, b: string): number {
 	const score = compatibilityData[attr][a][b];
 	return score;
+}
+
+// get comments on given attributes
+function getComment(attr: keyof Person, a: string, b: string): string {
+	const comment = commentsData[attr][a][b];
+	return comment;
 }
 
 // calculate score for name 
@@ -33,7 +43,7 @@ function getNameScore(a: string, b: string): number {
 	}
 	const aNamank = calculateNameNumber(a).toString();
 	const bNamank = calculateNameNumber(b).toString();
-	
+
 	return getScore("name", aNamank, bNamank);
 }
 
@@ -89,14 +99,26 @@ app.post('/api/calculate', (req, res) => {
 			bloodScore * 0.1 +
 			zodiacScore * 0.1
 		);
+		const starComment = getComment("starSign", personA.starSign, personB.starSign);
+		const mbtiComment = getComment("mbti", personA.mbti, personB.mbti);
+		const zodiacComment = getComment("zodiac", personA.zodiac, personB.zodiac); 
+		const bloodComment = getComment("blood", personA.blood, personB.blood);  
+
+		console.log(starComment);
 		res.json({ 
 			score: finalScore,
 			breakdown: {
 				name: nameScore,
 				starSign: starScore,
 				mbti: mbtiScore,
-				zodiac: zodiacScore, 
+				zodiac: zodiacScore,
 				blood: bloodScore
+			},
+			comments: {
+				starSign: starComment,
+				mbti: mbtiComment,
+				zodiac: zodiacComment,
+				blood: bloodComment
 			}
 		});
 	} catch (err) {

@@ -25,9 +25,15 @@ export interface CompatibilityResult {
   score: number;
   breakdown: {
     name: number;
-    starSigns: number;
+    starSign: number;
     mbti: number;
     zodiac: number;
     blood: number;
+  };
+  comments: {
+    starSign: string;
+    mbti: string;
+    zodiac: string;
+    blood: string;
   };
 }

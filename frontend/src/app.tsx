@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { scroller, Element } from "react-scroll";
 import { useState, useEffect } from 'react';
+import ProgressBar from "@ramonak/react-progress-bar";
 import { 
 	type Person, 
 	type StarSign,
@@ -19,14 +20,14 @@ function App() {
 	const [personA, setPersonA] = useState<Person>({
 		name: '',
 		starSign: 'Aries', // random default values 
-		mbti: 'ENTP',
+		mbti: 'ENFP',
 		zodiac: 'Rat',
 		blood: 'A'
 	});
 	const [personB, setPersonB] = useState<Person>({
 		name: '',
 		starSign: 'Aries',
-		mbti: 'ENTP',
+		mbti: 'ENFP',
 		zodiac: 'Rat',
 		blood: 'A'
 	});
@@ -91,7 +92,7 @@ function App() {
 	// feedback submission handler 
 	const handleFeedbackSubmit = async () => {
 		if (!feedback.trim()) {
-			toast.warning('Please enter feedback 💛', {className: 'warning-notif'});
+			toast.warning('Please enter feedback 🤍', {className: 'warning-notif'});
 			return;
 		}
 		try {
@@ -144,20 +145,20 @@ function App() {
 							<span>MBTI:</span> 
 							<select value={personA.mbti} onChange={(e) => setPersonA({...personA, mbti: e.target.value as MBTI})}>
 								<option value="INFP">INFP</option>
-								<option value="ENFP">ENFP</option>
 								<option value="INFJ">INFJ</option>
-								<option value="ENFJ">ENFJ</option>
 								<option value="INTJ">INTJ</option>
-								<option value="ENTJ">ENTJ</option>
 								<option value="INTP">INTP</option>
-								<option value="ENTP">ENTP</option>
 								<option value="ISFP">ISFP</option>
-								<option value="ESFP">ESFP</option>
 								<option value="ISTP">ISTP</option>
-								<option value="ESTP">ESTP</option>
 								<option value="ISFJ">ISFJ</option>
-								<option value="ESFJ">ESFJ</option>
 								<option value="ISTJ">ISTJ</option>
+								<option value="ENFP">ENFP</option>
+								<option value="ENFJ">ENFJ</option>
+								<option value="ENTJ">ENTJ</option>
+								<option value="ENTP">ENTP</option>
+								<option value="ESFP">ESFP</option>
+								<option value="ESTP">ESTP</option>
+								<option value="ESFJ">ESFJ</option>
 								<option value="ESTJ">ESTJ</option>
 							</select>
 						</label>
@@ -223,20 +224,20 @@ function App() {
 							<span>MBTI:</span> 
 							<select value={personB.mbti} onChange={(e) => setPersonB({...personB, mbti: e.target.value as MBTI})}>
 								<option value="INFP">INFP</option>
-								<option value="ENFP">ENFP</option>
 								<option value="INFJ">INFJ</option>
-								<option value="ENFJ">ENFJ</option>
 								<option value="INTJ">INTJ</option>
-								<option value="ENTJ">ENTJ</option>
 								<option value="INTP">INTP</option>
-								<option value="ENTP">ENTP</option>
 								<option value="ISFP">ISFP</option>
-								<option value="ESFP">ESFP</option>
 								<option value="ISTP">ISTP</option>
-								<option value="ESTP">ESTP</option>
 								<option value="ISFJ">ISFJ</option>
-								<option value="ESFJ">ESFJ</option>
 								<option value="ISTJ">ISTJ</option>
+								<option value="ENFP">ENFP</option>
+								<option value="ENFJ">ENFJ</option>
+								<option value="ENTJ">ENTJ</option>
+								<option value="ENTP">ENTP</option>
+								<option value="ESFP">ESFP</option>
+								<option value="ESTP">ESTP</option>
+								<option value="ESFJ">ESFJ</option>
 								<option value="ESTJ">ESTJ</option>
 							</select>
 						</label>
@@ -284,13 +285,39 @@ function App() {
 						<div className="results-breakdown">
 							<h3 id ="breakdown-title">Results Breakdown:</h3>
 
-							{Object.entries(result.breakdown).map(([category, score]) => (
-								<div key={category} className="breakdown-item">
-									<span className="category"> {category} compatibility</span>
-									<span className="category-score"> {score}%</span>
-									<div className="progress-bar" style={{width: `${score}`}}></div> 
-								</div>
-							))}
+							{Object.entries(result.breakdown).map(([category, score]) => {
+								const displayNames: {[key: string]: string} = {
+									name: "Name",
+									starSign: "Zodiac Star Sign",
+									mbti: "MBTI",
+									zodiac: "Chinese Zodiac",
+									blood: "Blood Type"
+								};
+								const displayName = displayNames[category];
+
+								return (
+									<div key={category} className="breakdown-item">
+										<div className="breakdown-head">
+											<span className="category"> {displayName} compatibility</span>
+											<ProgressBar
+												completed={score}
+												className="progress-bar"
+												bgColor="#d96767"
+												width="8rem"
+												height="0.8rem"
+												labelColor="#d96767"
+											/>
+											<span className="category-score"> {score}%</span>
+										</div>
+
+										{category !== "name" && result.comments && (
+											<div className="comment">
+												{result.comments[category as keyof typeof result.comments]}
+											</div>
+										)}
+									</div>
+								);
+							})}
 						</div>
 					</div>
 					<div className="results-footer">
