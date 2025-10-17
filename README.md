@@ -17,6 +17,7 @@ Below are some of the sources used
 * First Name
   * https://www.astrosage.com/numerology/namecompatibility.asp
   * https://astrotalk.com/name-compatibility-calculator
+  * https://www.suvich.com/name-compatibility
 * Star Signs
   * https://www.zodiacsign.com/
   * https://www.elle.com/horoscopes/a46333513/zodiac-sign-friendship-compatability/
