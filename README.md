@@ -17,13 +17,14 @@ Below are some of the sources used
 * Name Initials
 * Star Signs
 * Blood Types
+  * 
 * MBTI
   * https://www.equalture.com/blog/personality-tests-for-candidate-screening/
   * https://styx.personality-database.com/chemistry
 * Chinese Zodiac Animals
   * https://baike.baidu.com/item/%E7%94%9F%E8%82%96%E9%85%8D%E5%B0%8D/4188661
 
-To run webapp
+To run locally
 * `/frontend $ npm run dev`
 * `/backend $ npm start`
 
