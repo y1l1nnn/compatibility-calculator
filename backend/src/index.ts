@@ -23,15 +23,48 @@ function getScore(attr: keyof Person, a: string, b: string): number {
 
 // calculate score for name 
 function getNameScore(a: string, b: string): number {
-	a = a.trim();
-	b = b.trim();
+	a = a.trim().toLowerCase();
+	b = b.trim().toLowerCase();
 	const regexp = /^[a-zA-Z]+$/;
 	if (!a || !b) {
 		throw new Error("Empty name");
 	} else if (!regexp.test(a) || !regexp.test(b)) {
 		throw new Error("Nonalphabetical characters");
 	}
+	const aNamank = calculateNameNumber(a);
+	const bNamank = calculateNameNumber(b);
 	return 0;
+}
+
+// calculate the name number for a name
+function calculateNameNumber(name: string) : number {
+	const namankMap = new Map<number, string[]>();
+	namankMap.set(1, ['a', 'j', 's']);
+	namankMap.set(2, ['b', 'k', 't']);
+	namankMap.set(3, ['c', 'l', 'u']);
+	namankMap.set(4, ['d', 'm', 'v']);
+	namankMap.set(5, ['e', 'n', 'w']);
+	namankMap.set(6, ['f', 'o', 'x']);
+	namankMap.set(7, ['g', 'p', 'y']);
+	namankMap.set(8, ['h', 'q', 'z']);
+	namankMap.set(9, ['i', 'r']);
+	let nameSum = 0;
+	for (const char of name) {
+		nameSum += getKey(namankMap, char);
+	}
+	let namankStr = nameSum.toString();
+	let namank = 0;
+	for (const digit of namankStr) {
+		namank += parseInt(digit, 10);
+	}
+	return namank;
+}
+
+function getKey(map: Map<number, string[]>, char: string): number {
+	for (let [key, values] of map.entries()) {
+		if (values.includes(char)) return key;
+	}
+	throw new Error(`Unexpected character: ${char}`);
 }
 
 // endpoint to calculate results 
