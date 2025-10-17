@@ -305,7 +305,7 @@ function App() {
 												bgColor="#d96767"
 												width="8rem"
 												height="0.8rem"
-												labelColor="#d96767"
+												isLabelVisible={false}
 											/>
 											<span className="category-score"> {score}%</span>
 										</div>
