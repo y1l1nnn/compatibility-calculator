@@ -12,8 +12,8 @@ const FloatingHearts: React.FC = () => {
   // Helper to generate a random style for each heart
   const generateHeartStyle = (): React.CSSProperties => {
     const left = Math.random() * 100; 				// horizontal %
-    const duration = 15 + Math.random() * 10; 		// 15–25s total float time
-    const size = 15 + Math.random() * 25; 			// 15–40px
+    const duration = 20 + Math.random() * 15; 		// 20–35s total float time
+    const size = 15 + Math.random() * 20; 			// 15–35px
 
     const colors = [
       '#ff6b6b', '#ff8e8e', '#ff5252', '#e86648',
@@ -37,7 +37,7 @@ const FloatingHearts: React.FC = () => {
         style: generateHeartStyle(),
       };
       setHearts(prev => [...prev, newHeart]);
-    }, 700);
+    }, 900);
 
     return () => clearInterval(interval);
   }, []);
